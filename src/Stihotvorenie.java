@@ -1,6 +1,5 @@
 public class Stihotvorenie {
     public String[] str;
-
     Stihotvorenie (String[] str) {
         this.str = str;
     }
