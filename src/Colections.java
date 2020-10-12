@@ -1,8 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Colections {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         List<String> a = new ArrayList<>();
         List<String> b = new ArrayList<>();
         a.add("4");
@@ -11,10 +12,10 @@ public class Colections {
         b.add("lalala");
 
         List<String> qq = new ArrayList<>();
-        qq.add("4");
+        qq.add("aaa4");
         qq.add("3");
         qq.add("6");
-        qq.add("7");
+        qq.add("a7");
 
         List<Integer> a_i = new ArrayList<>(zad1());
         System.out.println("1");
@@ -33,14 +34,22 @@ public class Colections {
         System.out.println("5.1.1");
         zad5_1_1(a);
         System.out.println(a);
+
         System.out.println("5.2.2");
-        //System.out.println(zad5_2_2(qq));
+        System.out.println(zad5_2_2(qq));
+        System.out.println("5.2.1");
+        zad5_2_1(qq);
+        System.out.println(qq);
+
         System.out.println("5.3.2");
         System.out.println(a_i);
         System.out.println(zad5_3_2(a_i));
         System.out.println("5.3.1");
         zad5_3_1(a_i);
         System.out.println(a_i);
+        System.out.println("");
+        zad6("text.txt");
+
 
     }
     public static List<Integer> zad1(){
@@ -71,30 +80,48 @@ public class Colections {
     public static void zad5_1_1(List<String> a){
         for(int i = 0; i < a.size(); i++){
             if(i % 2 == 0 ){
+                a.set(i, "*");
+            }
+        }
+        for(int i = 0; i < a.size(); i++){
+            if(a.get(i) == "*" ){
+                a.remove(i);
+            }
+        }
+
+    }
+    public static List<String> zad5_1_2(List<String> a){
+        List<String> b = new ArrayList<>(a);
+        for(int i = 0; i < b.size(); i++){
+            if(i % 2 == 0 ){
+                b.set(i, "*");
+            }
+        }
+        for(int i = 0; i < b.size(); i++){
+            if(b.get(i) == "*" ){
+                b.remove(i);
+            }
+        }
+        return b;
+    }
+    public static void zad5_2_1(List<String> a){
+        for(int i = 0; i < a.size(); i++){
+            if(a.get(i).matches("(?![^\\d])\\d*[24680](?![a-zA-Z])(?![.,]?\\d)")){
                 a.remove(i);
             }
         }
     }
-    public static List<String> zad5_1_2(List<String> a){
+    public static List<String> zad5_2_2(List<String> a){
         List<String> b = new ArrayList<>(a);
-        for(int i = 0; i < a.size(); i++){
-            if(i % 2 == 0 ){
+        for(int i = 0; i < b.size(); i++){
+            if(b.get(i).matches("(?![^\\d])\\d*[24680](?![a-zA-Z])(?![.,]?\\d)")){
                 b.remove(i);
             }
         }
         return b;
     }
-    /*public static List<String> zad5_2_2(List<String> a){
-        List<String> b = new ArrayList<>(a);
-        for(int i = 0; i < a.size(); i++){
-            if( Integer.valueOf(b.get(i)) % 2 == 0 ){
-                b.remove(i);
-            } else {
 
-            }
-        }
-        return b;
-    }*/
+
     public static void zad5_3_1(List<Integer> a){
         for(int i = 0; i < a.size(); i++){
             if(a.get(i) % 2 == 0 && i != 0){
@@ -110,5 +137,22 @@ public class Colections {
             }
         }
         return b;
+    }
+    public static void zad6(String fileName) throws Exception{
+        HashSet<String> hashSetFile = new HashSet<>();
+        TreeSet<String> treeSetFile = new TreeSet<>();
+        LinkedHashSet<String> linkedHashSetFile = new LinkedHashSet<>();
+        Path out = Paths.get(fileName);
+        try (Scanner in = new Scanner(out)) {
+            while(in.hasNext()){
+                String str = in.next().toLowerCase();
+                hashSetFile.add(str);
+                treeSetFile.add(str);
+                linkedHashSetFile.add(str);
+            }
+        }
+        System.out.println(hashSetFile);
+        System.out.println(treeSetFile);
+        System.out.println(linkedHashSetFile);
     }
 }
