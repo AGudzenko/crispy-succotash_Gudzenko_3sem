@@ -16,7 +16,7 @@ public class Colections {
         qq.add("3");
         qq.add("6");
         qq.add("a7");
-
+        print(qq);
         List<Integer> a_i = new ArrayList<>(zad1());
         System.out.println("1");
         System.out.println(zad1());
@@ -52,6 +52,16 @@ public class Colections {
 
 
     }
+    public static void print(List<String> a){
+        System.out.println("Элементов в списке: " + a.size());
+        for(String i : a)
+            System.out.println(i);
+    }
+    public static void printIndex(List<String> a){
+        System.out.println("Элементов в списке: " + a.size());
+        for(int i = 0; i < a.size(); i++)
+            System.out.println(i + ": " + a.get(i));
+    }
     public static List<Integer> zad1(){
         List<Integer> a = new ArrayList<>();
         for(int i = 1; i<=100; i++){
@@ -59,8 +69,10 @@ public class Colections {
         }
         return a;
     }
-    public static void zad2(List<String> a, List<String> b){
-        a.addAll(b);
+    public static List<String> zad2(List<String> a, List<String> b){
+        List<String> new_list = new ArrayList<>(a);
+        new_list.addAll(b);
+        return new_list;
     }
     public static void zad41(List<String> a){
         List<String> b = new ArrayList<>();
